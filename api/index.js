@@ -11,7 +11,11 @@ const app = express();
 
 app.use(express.json());
 
-mongoose.connect(process.env.MONGO)
+mongoose.connect(process.env.MONGO, {
+    useNewUrlParser: true, 
+    useUnifiedTopology: true,
+    writeConcern: { w: 'majority' },
+})
         .then(() => {
             console.log('Mongodb connected');
         })
